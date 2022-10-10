@@ -1,0 +1,21 @@
+{
+    "name": "larsnieuwenhuizen/ci-helpers",
+    "description": "Library with scripts to help your CI life",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Larsnieuwenhuizen\\CiHelpers\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Lars Nieuwenhuizen",
+            "email": "l.nieuwenhuizen@developers.nl"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "symfony/console": "^6.1"
+    }
+}
