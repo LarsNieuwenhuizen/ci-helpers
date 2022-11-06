@@ -3,10 +3,11 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use LarsNieuwenhuizen\CiHelpers\Command;
+use Larsnieuwenhuizen\CiHelpers\Command\DefineVersionCommand;
 use Symfony\Component\Console\Application;
 
 $application = new Application('CI Helpers');
+$application->add(new DefineVersionCommand());
 
 
 $application->run();
