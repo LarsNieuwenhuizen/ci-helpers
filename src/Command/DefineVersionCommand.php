@@ -44,19 +44,29 @@ class DefineVersionCommand extends Command
             if ($this->io->isVerbose()) {
                 $this->io->title('Define next version');
                 $this->io->info('The last tag');
-                $this->io->block($this->getLastTag());
+                $this->io->block($tag);
                 $this->io->info('Commits since last tag');
-                $this->io->block($this->getCommitsSinceLastTag($this->getLastTag()));
+                $this->io->block($commits);
                 $this->io->info('Bump decision');
                 $this->io->block((string)$bumpDecision);
                 $this->io->info('New version');
             }
 
-            $this->io->text($this->getNewVersion($bumpDecision, $tag));
+            $this->io->text($this->nextVersion());
         } catch (ExecutionException $executionException) {
             $this->io->error($executionException->getMessage());
+            exit(1);
         }
         exit(0);
+    }
+
+    protected function nextVersion(): string
+    {
+        $tag = $this->getLastTag();
+        $commits = $this->getCommitsSinceLastTag($tag);
+        $bumpDecision = $this->decideBump($commits);
+
+        return $this->getNewVersion($bumpDecision, $tag);
     }
 
     private function getLastTag(): string

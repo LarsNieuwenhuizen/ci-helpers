@@ -4,10 +4,12 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 use Larsnieuwenhuizen\CiHelpers\Command\DefineVersionCommand;
+use Larsnieuwenhuizen\CiHelpers\Command\ReleaseNextVersionCommand;
 use Symfony\Component\Console\Application;
 
 $application = new Application('CI Helpers');
 $application->add(new DefineVersionCommand());
+$application->add(new ReleaseNextVersionCommand());
 
 
 $application->run();
