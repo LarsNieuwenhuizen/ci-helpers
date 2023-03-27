@@ -16,12 +16,9 @@ class DefineVersionCommand extends Command
 
     const BUMP_MAJOR = 0;
     const MATCH_MAJOR = '/^(breaking)/mi';
-
     const BUMP_MINOR = 1;
     const MATCH_MINOR = '/^(feat|feature)/mi';
-
     const BUMP_PATCH = 2;
-
     const VERSION_PREG_MATCH = '/([vV])?([0-9]+).([0-9]+).([0-9]+)/';
 
     protected SymfonyStyle $io;
@@ -72,7 +69,7 @@ class DefineVersionCommand extends Command
     private function getLastTag(): string
     {
         $lastTag = \trim(
-            \shell_exec('git --git-dir=app/.git describe --tags --abbrev=0')
+            \shell_exec('git --git-dir=/app/code/.git describe --tags --abbrev=0')
         );
 
         if (\preg_match(self::VERSION_PREG_MATCH, $lastTag) === false) {
@@ -87,7 +84,7 @@ class DefineVersionCommand extends Command
     private function getCommitsSinceLastTag(string $lastTag): string
     {
         $commits = \shell_exec(
-            'git --git-dir=app/.git log --oneline ' . $lastTag . '..HEAD --pretty=format:"%s"'
+            'git --git-dir=app/code/.git log --oneline ' . $lastTag . '..HEAD --pretty=format:"%s"'
         );
 
         if ($commits === null) {

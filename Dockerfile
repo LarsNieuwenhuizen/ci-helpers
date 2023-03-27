@@ -4,7 +4,8 @@ COPY . /app
 
 WORKDIR /app
 
-RUN composer install --no-dev --no-interaction -oq
+RUN composer install --no-dev --no-interaction -oq; \
+    mkdir -p /app/code
 
 USER docker
 
