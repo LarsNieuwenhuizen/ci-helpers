@@ -38,5 +38,6 @@ class ReleaseNextVersionCommand extends DefineVersionCommand
     {
         \shell_exec('cd /app/code && git commit --allow-empty -m "release: ' . $versionTag . '"');
         \shell_exec('git --git-dir=/app/code/.git tag ' . $versionTag . ' -m ' . $versionTag);
+        \shell_exec('cd /app/code && git push');
     }
 }

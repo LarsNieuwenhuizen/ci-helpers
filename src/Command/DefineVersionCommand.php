@@ -32,8 +32,8 @@ class DefineVersionCommand extends Command
 
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
-        \shell_exec('git config --global user.email "no-reply@ctdpim.com"');
-        \shell_exec('git config --global user.name "CTD git bot"');
+        \shell_exec('git config --global user.email "no-reply@automation.user"');
+        \shell_exec('git config --global user.name "Automation bot"');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
