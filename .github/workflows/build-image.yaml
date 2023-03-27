@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  create-tagged-images:
+  create-latest-image:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
