@@ -1,12 +1,11 @@
 FROM larsnieuwenhuizen/php-fpm:8.1-dev as install
 
-COPY . /app
+COPY --chown=docker:dockerlocal . /app
 
 WORKDIR /app
 
 RUN composer install --no-dev --no-interaction -oq; \
-    mkdir -p /app/code
+    mkdir -p /app/code; \
+    chown -R docker:dockerlocal /app;
 
-USER docker
-
-CMD bin/console
+ENTRYPOINT bin/console

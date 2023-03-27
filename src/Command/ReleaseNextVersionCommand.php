@@ -37,6 +37,6 @@ class ReleaseNextVersionCommand extends DefineVersionCommand
     private function createReleaseCommit(string $versionTag): void
     {
         \shell_exec('cd app && git commit --allow-empty -m "release: ' . $versionTag . '"');
-        \shell_exec('git --git-dir=app/.git tag -s ' . $versionTag . ' -m ' . $versionTag);
+        \shell_exec('git --git-dir=app/.git tag ' . $versionTag . ' -m ' . $versionTag);
     }
 }

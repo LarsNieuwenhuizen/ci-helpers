@@ -6,6 +6,7 @@ namespace Larsnieuwenhuizen\CiHelpers\Command;
 use LarsNieuwenhuizen\CiHelpers\Exception\ExecutionException;
 use Larsnieuwenhuizen\CiHelpers\Exception\InvalidTagException;
 use Larsnieuwenhuizen\CiHelpers\Exception\NoNewCommitsException;
+use Larsnieuwenhuizen\CiHelpers\Exception\NoTagsException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -68,6 +69,12 @@ class DefineVersionCommand extends Command
 
     private function getLastTag(): string
     {
+        $tagCount = (int)\shell_exec('git --git-dir=/app/code/.git tag | wc -l');
+
+        if ($tagCount === 0) {
+            throw new NoTagsException();
+        }
+
         $lastTag = \trim(
             \shell_exec('git --git-dir=/app/code/.git describe --tags --abbrev=0')
         );
