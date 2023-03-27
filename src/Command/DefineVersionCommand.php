@@ -30,6 +30,12 @@ class DefineVersionCommand extends Command
         $this->setDescription('Define the next version based on the last version and it\'s following commits');
     }
 
+    protected function initialize(InputInterface $input, OutputInterface $output)
+    {
+        \shell_exec('git config --global user.email "no-reply@ctdpim.com"');
+        \shell_exec('git config --global user.name "CTD git bot"');
+    }
+
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         try {
@@ -91,7 +97,7 @@ class DefineVersionCommand extends Command
     private function getCommitsSinceLastTag(string $lastTag): string
     {
         $commits = \shell_exec(
-            'git --git-dir=app/code/.git log --oneline ' . $lastTag . '..HEAD --pretty=format:"%s"'
+            'git --git-dir=/app/code/.git log --oneline ' . $lastTag . '..HEAD --pretty=format:"%s"'
         );
 
         if ($commits === null) {

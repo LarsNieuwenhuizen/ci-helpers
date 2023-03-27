@@ -8,4 +8,6 @@ RUN composer install --no-dev --no-interaction -oq; \
     mkdir -p /app/code; \
     chown -R docker:dockerlocal /app;
 
-ENTRYPOINT bin/console
+ENTRYPOINT ["bin/console"]
+
+CMD ["version:define", "-vvv"]
