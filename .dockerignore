@@ -1,3 +1,4 @@
 app
 .gitignore
 vendor
+.git
