@@ -24,4 +24,9 @@ jobs:
           version: 2
 
       - name: Define version
-        run: bin/console version:define -vvv
+        run: |
+          mkdir -p /app/code;
+          cp -r . /app/code;
+          cd /app/code;
+          ls -al;
+          bin/console version:define -vvv
