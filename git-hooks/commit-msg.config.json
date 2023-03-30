@@ -16,6 +16,7 @@
         "feat",
         "fix",
         "perf",
+        "release",
         "refactor",
         "style",
         "test"
