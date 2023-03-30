@@ -9,6 +9,8 @@
         "build",
         "ci",
         "cd",
+        "conf",
+        "chore",
         "docs",
         "feature",
         "feat",
@@ -16,7 +18,6 @@
         "perf",
         "refactor",
         "style",
-        "test",
-        "chore"
+        "test"
     ]
 }
