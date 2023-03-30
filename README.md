@@ -35,6 +35,11 @@ You need to create your git commit messages in a correct manner.
 
 To check your commit messages on git commit you can install the following hook and configuration file.
 
+Requirements:
+- bash
+- wget
+- curl
+
 In your terminal go to your git project root and run:
 
 ```shell
