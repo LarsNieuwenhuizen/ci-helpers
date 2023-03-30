@@ -19,10 +19,7 @@ jobs:
         run: |
           cp -r . /app/code;
           cp -r .git /app/code;
-          cd /app/code;
-          ls -al;
           cd /app;
-          ls -al;
           git --git-dir=/app/code/.git tag;
           version=$(bin/console version:define);
           echo "version=$version" >> $GITHUB_OUTPUT;

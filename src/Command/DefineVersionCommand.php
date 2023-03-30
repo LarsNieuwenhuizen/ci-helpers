@@ -56,7 +56,7 @@ class DefineVersionCommand extends Command
                 $this->io->info('New version');
             }
 
-            $this->io->text($this->nextVersion());
+            $this->io->writeln($this->nextVersion());
         } catch (ExecutionException $executionException) {
             $this->io->error($executionException->getMessage());
             exit(1);
