@@ -19,6 +19,7 @@ jobs:
       - name: Define new version
         id: vars
         run: |
+          set -eux;
           cp -r . /app/code;
           cp -r .git /app/code;
           cd /app;
@@ -28,6 +29,7 @@ jobs:
 
       - name: Release new version
         run: |
+          set -eux;
           cp -r . /app/code;
           cp -r .git /app/code;
           cd /app/code;
