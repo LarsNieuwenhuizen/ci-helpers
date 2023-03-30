@@ -66,11 +66,15 @@ class DefineVersionCommand extends Command
 
     protected function nextVersion(): string
     {
-        $tag = $this->getLastTag();
-        $commits = $this->getCommitsSinceLastTag($tag);
-        $bumpDecision = $this->decideBump($commits);
+        try {
+            $tag = $this->getLastTag();
+            $commits = $this->getCommitsSinceLastTag($tag);
+            $bumpDecision = $this->decideBump($commits);
 
-        return $this->getNewVersion($bumpDecision, $tag);
+            return $this->getNewVersion($bumpDecision, $tag);
+        } catch (NoTagsException $noTagsException) {
+            return 'v0.0.0';
+        }
     }
 
     private function getLastTag(): string
