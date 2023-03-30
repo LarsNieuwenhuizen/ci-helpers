@@ -12,8 +12,12 @@ There are currently two scripts.
 
     This actually creates the release commit and tags it with the next SemVer version and pushes it to master
 
+    Executing this with --changelog-update or -c also updates the CHANGELOG.md file with the commit list.
+
+    `bin/console version:release -c`
+
 ## Docker image
-The image created is `larsnieuwenhuizen/ci-helpers`
+The image created is `larsnieuwenhuizen/ci-helpers
 
 ## Pipeline usage
 
