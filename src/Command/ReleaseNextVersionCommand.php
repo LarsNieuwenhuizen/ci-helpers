@@ -83,7 +83,7 @@ class ReleaseNextVersionCommand extends DefineVersionCommand
         foreach ($commits as $commit) {
             $commitLines .= "$commit\n";
         }
-        $commitLines .= "\n\n";
+        $commitLines .= "\n";
 
         $changelog = \file_get_contents(self::CHANGELOG_PATH);
         $newChangelogContents = \str_replace("---\n", $commitLines, $changelog);
