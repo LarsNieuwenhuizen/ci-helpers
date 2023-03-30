@@ -14,7 +14,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Define version
+      - name: Release new version
         run: |
           cp -r . /app/code;
           cp -r .git /app/code;
@@ -24,3 +24,4 @@ jobs:
           ls -al;
           git --git-dir=/app/code/.git tag;
           bin/console version:define -vvv;
+          bin/console version:release;
