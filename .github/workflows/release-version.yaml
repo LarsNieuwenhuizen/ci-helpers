@@ -15,6 +15,7 @@ jobs:
       - name: Define version
         run: |
           cp -r . /app/code;
+          cp -r .git /app/code;
           cd /app/code;
           ls -al;
           cd /app;
