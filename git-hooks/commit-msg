@@ -1,0 +1,53 @@
+#!/bin/bash
+
+set -e
+
+config=commit-msg.config.json
+
+# set variables
+enabled=$(jq -r .enabled $config)
+revert=$(jq -r .revert $config)
+types=($(jq -r '.types[]' $config))
+min_length=$(jq -r .length.min $config)
+max_length=$(jq -r .length.max $config)
+
+regexp="^("
+
+if $revert; then
+    regexp="${regexp}revert: )?("
+fi
+
+n=${#types[@]};
+i=1;
+
+for type in "${types[@]}"
+do
+    if [[ ! $i -eq $n ]]; then
+      regexp="${regexp}$type|"
+    else
+      regexp="${regexp}$type"
+    fi
+    i=$i+1
+done
+
+regexp="${regexp})(\(.+\))?:"
+regexp="${regexp}.{$min_length,$max_length}$"
+
+echo $regexp
+
+msg=$(head -1 $1)
+
+echo $msg
+
+if [[ ! $msg =~ $regexp ]]; then
+  echo -e "[INVALID COMMIT MESSAGE]"
+  echo -e "------------------------"
+  echo -e "Valid types: ${types[@]}"
+  echo -e "Max length (first line): $max_length"
+  echo -e "Min length (first line): $min_length"
+
+  # exit with an error
+  exit 1
+fi
+
+
