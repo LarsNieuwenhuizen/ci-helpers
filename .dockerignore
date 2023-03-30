@@ -2,3 +2,5 @@ app
 .gitignore
 vendor
 .git
+.github
+git-hooks
