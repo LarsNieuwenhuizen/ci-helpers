@@ -20,4 +20,5 @@ jobs:
           ls -al;
           cd /app;
           ls -al;
+          git --git-dir=/app/code/.git log --oneline;
           git --git-dir=/app/code/.git tag
