@@ -76,10 +76,10 @@ class ReleaseNextVersionCommand extends DefineVersionCommand
 
         if (\file_exists(self::CHANGELOG_PATH) === false) {
             touch(self::CHANGELOG_PATH);
-            file_put_contents(self::CHANGELOG_PATH, "---\n\n");
+            file_put_contents(self::CHANGELOG_PATH, "# Changelog \n---\n\n");
         }
 
-        $commitLines = "---\n$version | " . \date('d-m-Y') . " \n\n";
+        $commitLines = "---\n## $version | " . \date('d-m-Y') . "\n\n";
         foreach ($commits as $commit) {
             $commitLines .= "$commit\n";
         }
