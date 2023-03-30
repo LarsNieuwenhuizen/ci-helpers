@@ -1,6 +1,9 @@
 name: Build the docker image
 
 on:
+  push:
+    tags:
+      - '*'
   workflow_dispatch:
 
 jobs:
@@ -21,4 +24,4 @@ jobs:
           qemu-version: latest
 
       - name: Build and push new images
-        run: ./build.sh
+        run: ./build.sh $GITHUB_REF_NAME
