@@ -81,7 +81,7 @@ class ReleaseNextVersionCommand extends DefineVersionCommand
 
         $commitLines = "## Version history\n\n### $version | " . \date('d-m-Y') . "\n\n";
         foreach ($commits as $commit) {
-            $commitLines .= "$commit\n";
+            $commitLines .= "- $commit\n";
         }
         $commitLines .= "\n";
 
