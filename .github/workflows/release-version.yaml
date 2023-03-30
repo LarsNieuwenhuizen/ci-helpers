@@ -17,4 +17,6 @@ jobs:
           cp -r . /app/code;
           cd /app/code;
           ls -al;
+          cd /app;
+          ls -al;
           bin/console version:define -vvv
