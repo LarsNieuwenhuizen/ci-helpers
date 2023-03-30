@@ -6,26 +6,14 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    container:
+      image: larsnieuwenhuizen/ci-helpers:latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Cache Composer dependencies
-        uses: actions/cache@v3
-        with:
-          path: /tmp/composer-cache
-          key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
-
-      - name: Install dependencies
-        uses: php-actions/composer@v6
-        with:
-          dev: no
-          php_version: 8.1
-          version: 2
-
       - name: Define version
         run: |
-          mkdir -p /app/code;
           cp -r . /app/code;
           cd /app/code;
           ls -al;
