@@ -31,11 +31,7 @@ done
 regexp="${regexp})(\(.+\))?:"
 regexp="${regexp}.{$min_length,$max_length}$"
 
-echo $regexp
-
 msg=$(head -1 $1)
-
-echo $msg
 
 if [[ ! $msg =~ $regexp ]]; then
   echo -e "[INVALID COMMIT MESSAGE]"
