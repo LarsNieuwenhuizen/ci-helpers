@@ -32,14 +32,14 @@ class DefineVersionCommand extends Command
 
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
-        \shell_exec('git config --global user.email "no-reply@automation.user"');
-        \shell_exec('git config --global user.name "Automation bot"');
+        \shell_exec('git config user.email "no-reply@automation.user"');
+        \shell_exec('git config user.name "Automation bot"');
+        $this->io = new SymfonyStyle($input, $output);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         try {
-            $this->io = new SymfonyStyle($input, $output);
 
             $tag = $this->getLastTag();
             $commits = $this->getCommitsSinceLastTag($tag);
@@ -73,7 +73,7 @@ class DefineVersionCommand extends Command
         return $this->getNewVersion($bumpDecision, $tag);
     }
 
-    private function getLastTag(): string
+    protected function getLastTag(): string
     {
         $tagCount = (int)\shell_exec('git --git-dir=/app/code/.git tag | wc -l');
 
@@ -94,7 +94,7 @@ class DefineVersionCommand extends Command
         return $lastTag;
     }
 
-    private function getCommitsSinceLastTag(string $lastTag): string
+    protected function getCommitsSinceLastTag(string $lastTag): string
     {
         $commits = \shell_exec(
             'git --git-dir=/app/code/.git log --oneline ' . $lastTag . '..HEAD --pretty=format:"%s"'
