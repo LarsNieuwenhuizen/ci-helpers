@@ -36,7 +36,7 @@ jobs:
           ls -al;
           git --git-dir=/app/code/.git tag;
           bin/console version:define -vvv;
-          bin/console version:release;
+          bin/console version:release -c;
 
       - name: Create Release
         id: create_release
